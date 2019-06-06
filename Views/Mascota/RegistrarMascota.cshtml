@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Registro de Mascotas";
+}
+@model Mascota
+<div class="container">
+    <h1>Registro de Mascotas</h1>
+    <form asp-action="registrarmascota" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <label>Nombre:</label>
+            <input asp-for="Nombre">
+        </div>        
+        <div>
+            <label>Edad:</label>
+            <select asp-for="Edad">
+                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="1">3 - 6 meses</option>
+                <option value="2">6 meses - 1 año</option>
+                <option value="3">1 - 3 años</option>
+                <option value="4">4 - 7 años</option>
+                <option value="5">+7 años</option>                
+            </select>
+        </div>        
+        <div>
+            <label>Sexo:</label>
+            <select asp-for="Sexo">
+                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="Macho">Macho</option>
+                <option value="Hembra">Hembra</option>
+                
+            </select>
+        </div>
+        <div>
+            <label>Tamaño:</label>
+            <select asp-for="Tamano">
+                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="Pequeño">Pequeño</option>
+                <option value="Mediano">Mediano</option>
+                <option value="Grande">Grande</option>
+            </select>
+        </div>
+        <div>
+             <label>Peso:</label>
+            <input asp-for="Peso">
+        </div>
+        <div>
+            <label>Tipo de Pelo:</label>
+            <select asp-for="TipoPelo">
+                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="Corto">Corto</option>
+                <option value="Mediano">Mediano</option>
+                <option value="Largo">Largo</option>
+            </select>
+        </div>        
+        <div>
+            <label>Foto: </label>
+            <input asp-for="Foto">
+        </div>
+        <button type="submit">Registrar Mascota</button>
+    </form>
+</div>
