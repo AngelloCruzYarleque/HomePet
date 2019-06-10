@@ -1,4 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var mascota = (List<Mascota>)ViewBag.m;
 }
 
+<h1>Mascotas xd</h1>
+<div>
+    @foreach (var m in mascota)
+    {
+        <div> 
+            @m.Nombre
+            @m.Edad
+            <img src="~/imagenes/@m.Foto" alt="">
+        </div>
+           
+        
+    }
+</div>

@@ -29,11 +29,12 @@ namespace HomePet.Controllers
               var uploads = Path.Combine(hostingEnvironment.WebRootPath, "imagenes");
               var fullPath = Path.Combine(uploads,m.photofile.FileName);
               m.photofile.CopyTo(new FileStream(fullPath, FileMode.Create));  
-              m.Foto = m.photofile.FileName;            
+              m.Foto = m.photofile.FileName;                     
               _context.Add(m);
               _context.SaveChanges();
               return RedirectToAction("Index","Home");
           }
+          
           return View();        
           
         }
