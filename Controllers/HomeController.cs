@@ -17,9 +17,26 @@ namespace HomePet.Controllers
             this._context = c;
             
         }
-        public IActionResult Index()
+        public IActionResult Index(string sexo, string tamano, string tipo)
         {
-            var mascotas = _context.Mascotas.ToList(); 
+            var mascotas = _context.Mascotas.ToList();
+            /* if(sexo!="0" && tamano!="0" && tipo!="0"){
+                mascotas = _context.Mascotas.Where(x => x.Sexo == sexo && x.Tamano==tamano && x.TipoPelo==tipo).ToList(); 
+            }else if(sexo!="0" && tamano!="0" && tipo=="0"){
+                mascotas = _context.Mascotas.Where(x => x.Sexo == sexo && x.Tamano==tamano).ToList();
+            }else if(sexo!="0" && tamano=="0" && tipo!="0"){
+                mascotas = _context.Mascotas.Where(x => x.Sexo == sexo && x.TipoPelo==tipo).ToList();
+            }else if(sexo=="0" && tamano!="0" && tipo!="0"){
+                mascotas = _context.Mascotas.Where(x => x.TipoPelo == tipo && x.Tamano==tamano).ToList();
+            }else if(sexo!="0" && tamano=="0" && tipo=="0"){
+                mascotas = _context.Mascotas.Where(x => x.Sexo == sexo).ToList();
+            }else if(sexo=="0" && tamano!="0" && tipo=="0"){
+                mascotas = _context.Mascotas.Where(x => x.Tamano == tamano).ToList();
+            }else if(sexo=="0" && tamano=="0" && tipo!="0"){
+                mascotas = _context.Mascotas.Where(x => x.TipoPelo == tipo).ToList();
+            }               
+             */
+                     
             ViewBag.m = mascotas;
             return View();
         }

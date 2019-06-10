@@ -2,8 +2,39 @@
     ViewData["Title"] = "Home Page";
     var mascota = (List<Mascota>)ViewBag.m;
 }
-
-<h1>Mascotas xd</h1>
+@model List<Mascota>
+<form action="Index" method ="GET">
+            <div id="menu" class = "row">
+            <div class="col-3">
+                    <label for="">Sexo</label>
+                    <select name="sexo" id="" class="form-control" style="width: 200px;">
+                            <option value="0">Seleccionar</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                    </select>
+            </div>
+            <div class="col-3">
+                    <label for="">Tamaño</label>
+                    <select name="tamano" id="" class="form-control" style="width: 200px;">
+                            <option value="0">Seleccionar</option>
+                            <option value="Pequeño">Pequeño</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Grande">Grande</option>
+                    </select>
+            </div>
+            <div class="col-3">
+                    <label for="">Tipo de Pelo</label>
+                    <select name="tipo" id="" class="form-control" style="width: 200px;">
+                            <option value="0">Seleccionar</option>
+                            <option value="Corto">Corto</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Largo">Largo</option>
+                    </select>
+            </div>
+            <div class="col-3" style="background-color: azure"><button type="submit" class="btn btn-default">Submit</button></div>        
+    
+</form>
+<h1>Mascotas</h1>
 <div>
     @foreach (var m in mascota)
     {
