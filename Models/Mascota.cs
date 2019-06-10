@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace HomePet.Models
 {
@@ -17,5 +19,7 @@ namespace HomePet.Models
         [Required]
         public string TipoPelo { get; set; }
         public string Foto { get; set; }
+        [NotMapped]
+        public IFormFile  photofile { get; set; }
     }
 }
