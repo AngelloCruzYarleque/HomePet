@@ -3,7 +3,7 @@
 }
 @model Mascota
 <div class="container">
-    <h1>Registro de Mascotas</h1>
+    <h1 style="text-align:center">Registro de Mascotas</h1>
     <form asp-action="registrarmascota" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
         <div>
@@ -12,7 +12,7 @@
         </div>        
         <div>
             <label>Edad:</label>
-            <select asp-for="Edad">
+            <select class="custom-select" asp-for="Edad">
                 <option value="Seleccionar">--Seleccionar--</option>
                 <option value="3 - 6 meses">3 - 6 meses</option>
                 <option value="6 meses - 1 año">6 meses - 1 año</option>
@@ -23,7 +23,7 @@
         </div>        
         <div>
             <label>Sexo:</label>
-            <select asp-for="Sexo">
+            <select class="custom-select" asp-for="Sexo">
                 <option value="Seleccionar">--Seleccionar--</option>
                 <option value="Macho">Macho</option>
                 <option value="Hembra">Hembra</option>
@@ -32,7 +32,7 @@
         </div>
         <div>
             <label>Tamaño:</label>
-            <select asp-for="Tamano">
+            <select class="custom-select" asp-for="Tamano">
                 <option value="Seleccionar">--Seleccionar--</option>
                 <option value="Pequeño">Pequeño</option>
                 <option value="Mediano">Mediano</option>
@@ -45,17 +45,19 @@
         </div>
         <div>
             <label>Tipo de Pelo:</label>
-            <select asp-for="TipoPelo">
+            <select class="custom-select" asp-for="TipoPelo">
                 <option value="Seleccionar">--Seleccionar--</option>
                 <option value="Corto">Corto</option>
                 <option value="Mediano">Mediano</option>
                 <option value="Largo">Largo</option>
             </select>
-        </div>        
+        </div></br>        
         <div>
             <label>Foto: </label>
             <input type="file" name="photofile">
+        </div></br> 
+        <div class="container">
+            <button class="btn btn-success" type="submit">Registrar Mascota</button>
         </div>
-        <button type="submit">Registrar Mascota</button>
     </form>
 </div>
