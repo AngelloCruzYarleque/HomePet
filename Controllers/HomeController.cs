@@ -45,6 +45,20 @@ namespace HomePet.Controllers
             ViewBag.m = mascotas;
             return View();
         }
+        public IActionResult Contacto()
+        {
+          return View();
+        }
+        [HttpPost]
+        public IActionResult Contacto(Contacto c)
+        {
+           if(ModelState.IsValid){                    
+              _context.Add(c);
+              _context.SaveChanges();
+              return RedirectToAction("Index","Home");
+          }     
+          return View();
+        }
 
         public IActionResult Privacy()
         {

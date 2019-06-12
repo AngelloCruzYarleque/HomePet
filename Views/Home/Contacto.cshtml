@@ -1,0 +1,21 @@
+@model Contacto
+    <form asp-action="Contacto" method = "post">
+        <div asp-validation-summary="All"></div>
+        <div>
+                <label for="">Mensaje</label>
+                <input asp-for="Mensaje">
+        </div>
+        <div>
+                <label for="">Tipo de Contacto</label>
+                <select  asp-for="TipoContacto">
+                    <option value="0">Reclamo</option>
+                    <option value="1">Sugerencia</option>
+                </select>
+        </div>
+        <div class="container">
+                <button class="btn btn-success" type="submit">Enviar</button>
+        </div>
+</form>
+   
+
+    
