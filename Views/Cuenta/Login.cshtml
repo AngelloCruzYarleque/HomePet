@@ -1,0 +1,15 @@
+@model LoginViewModel
+
+<h1>Login</h1>
+
+<form asp-action="login" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        Nombre de usuario: <input asp-for="Usuario">
+    </div>
+    <div>
+        Password: <input asp-for="Password">
+    </div>
+    <button>Iniciar sesión</button>
+</form>

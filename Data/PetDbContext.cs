@@ -1,9 +1,10 @@
 using HomePet.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HomePet.Data
 {
-    public class PetDbContext : DbContext
+    public class PetDbContext : IdentityDbContext
     {
         public DbSet<Mascota> Mascotas { get; set; }
         public DbSet<Edad> MascotaEdad { get; set; }

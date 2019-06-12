@@ -1,0 +1,18 @@
+@model RegistroViewModel
+
+<h1>Formulario de registro</h1>
+
+<form asp-action="RegistrarUsuario" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        Nombre de usuario: <input asp-for="Usuario">
+    </div>
+    <div>
+        Correo: <input asp-for="Email">
+    </div>
+    <div>
+        Password: <input asp-for="Password">
+    </div>
+    <button>Crear cuenta</button>
+</form>
