@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HomePet.Models;
 using HomePet.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomePet.Controllers
 {
@@ -19,7 +20,7 @@ namespace HomePet.Controllers
         }
         public IActionResult Index(string sexo, string tamano, string tipo)
         {
-            var mascotas = _context.Mascotas.ToList();
+            var mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).ToList();
             /* if(sexo!="0" && tamano!="0" && tipo!="0"){
                 mascotas = _context.Mascotas.Where(x => x.Sexo == sexo && x.Tamano==tamano && x.TipoPelo==tipo).ToList(); 
             }else if(sexo!="0" && tamano!="0" && tipo=="0"){

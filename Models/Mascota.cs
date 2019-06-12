@@ -10,14 +10,17 @@ namespace HomePet.Models
         [Required]
         public string Nombre { get; set; }        
         [Required]
-        public string Edad { get; set; }    
+        public int EdadId { get; set; }    
+        public Edad Edad { get; set; }
         [Required] 
         public string Sexo { get; set; }   
         [Required]
-        public string Tamano{ get; set; }  
+        public int TamanoId{ get; set; }  
+        public Tamano Tamano { get; set; }
         public float Peso { get; set; }
         [Required]
-        public string TipoPelo { get; set; }
+        public int TipoPeloId { get; set; }
+        public TipoPelo TipoPelo { get; set; }
         public string Foto { get; set; }
         [NotMapped]
         public IFormFile  photofile { get; set; }

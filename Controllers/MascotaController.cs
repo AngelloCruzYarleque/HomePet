@@ -18,7 +18,9 @@ namespace HomePet.Controllers
         }
         public IActionResult RegistrarMascota()
         {
-          //TODO: Implement Realistic Implementation
+          ViewBag.TipoPelo=_context.MascotaTipoPelo.ToList();
+          ViewBag.Edad=_context.MascotaEdad.ToList();
+          ViewBag.Tamano=_context.MascotaTamano.ToList();
           return View();
         }
         [HttpPost]
@@ -34,7 +36,9 @@ namespace HomePet.Controllers
               _context.SaveChanges();
               return RedirectToAction("Index","Home");
           }
-          
+          ViewBag.TipoPelo=_context.MascotaTipoPelo.ToList();
+          ViewBag.Edad=_context.MascotaEdad.ToList();
+          ViewBag.Tamano=_context.MascotaTamano.ToList();
           return View();        
           
         }
