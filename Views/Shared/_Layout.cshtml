@@ -27,7 +27,35 @@
         box-sizing: border-box;
         transition: 0.3s;
 }
+input[type="email"] {
+        width: 100%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: 0.3s;
+}
+input[type="password"] {
+        width: 100%;
+        border: 2px solid #aaa;
+        border-radius: 4px;
+        margin: 8px 0;
+        outline: none;
+        padding: 8px;
+        box-sizing: border-box;
+        transition: 0.3s;
+}
         input[type="text"]:focus {
+        border-color: dodgerBlue;
+        box-shadow: 0 0 8px 0 dodgerBlue;
+}
+input[type="email"]:focus {
+        border-color: dodgerBlue;
+        box-shadow: 0 0 8px 0 dodgerBlue;
+}
+input[type="password"]:focus {
         border-color: dodgerBlue;
         box-shadow: 0 0 8px 0 dodgerBlue;
 }
@@ -47,15 +75,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HomePet</a>
                         </li>
+                         @if (Context.User.Identity.IsAuthenticated) {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
-                        </li>
+                        </li> 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="RegistrarUsuario">Registrar Usuario</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="Logout">Cerrar Sesión</a>
+                        </li>
+                         }
+                         else{
+                             <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="RegistrarUsuario">Crear Usuario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="Login">Login</a>
                         </li>
+                         }
                     </ul>
                 </div>
             </div>

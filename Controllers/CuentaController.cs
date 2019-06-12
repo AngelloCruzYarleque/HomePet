@@ -51,6 +51,11 @@ namespace HomePet.Controllers
           return View();
         }
 
+        public IActionResult Logout() {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
+        }
+
         [HttpPost]
         public IActionResult Login(LoginViewModel vm) {
             if (ModelState.IsValid) {
