@@ -3,8 +3,7 @@
     var mascota = (List<Mascota>)ViewBag.m;
 }
 @model List<Mascota>
-<!--
-<form action="Index" method ="GET">
+<form asp-action="Index" method ="GET">
             <div id="menu" class = "row">
             <div class="col-3">
                     <label for="">Sexo</label>
@@ -19,23 +18,28 @@
                     <label for="">Tamaño</label>
                     <select name="tamano" id="" class="form-control" style="width: 200px;">
                             <option value="0">Seleccionar</option>
-                            <option value="Pequeño">Pequeño</option>
-                            <option value="Mediano">Mediano</option>
-                            <option value="Grande">Grande</option>
+                            @foreach (var tamano in (List<Tamano>)ViewBag.Tamano)
+                            {
+                                <option value="@tamano.Id">@tamano.NombreTamano</option>
+                            }
                     </select>
             </div>
             <div class="col-3">
                     <label for="">Tipo de Pelo</label>
-                    <select name="tipo" id="" class="form-control" style="width: 200px;">
+                    <select name="tipoPelo" id="" class="form-control" style="width: 200px;">
                             <option value="0">Seleccionar</option>
-                            <option value="Corto">Corto</option>
-                            <option value="Mediano">Mediano</option>
-                            <option value="Largo">Largo</option>
+                            @foreach (var tipoP in (List<TipoPelo>)ViewBag.TipoPelo)
+                            {
+                                <option value="@tipoP.Id">@tipoP.NombreTipoPelo</option>
+                            }
                     </select>
             </div>
-            <div class="col-3" style="background-color: azure"><button type="submit" class="btn btn-default">Submit</button></div>            
+            <div class="col-3" style="background-color: azure"><button type="submit" class="btn btn-default">Filtrar</button></div>            
 </form>
-asd-->
+
+
+
+
 <h1>Mascotas</h1>
 <div>
     @foreach (var m in mascota)
