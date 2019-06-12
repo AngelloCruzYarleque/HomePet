@@ -18,29 +18,26 @@ namespace HomePet.Controllers
             this._context = c;
             
         }
-        public IActionResult Index(string sexo, int tamano, int tipoPelo)
-        {
-            ViewBag.TipoPelo=_context.MascotaTipoPelo.ToList();
-            ViewBag.Edad=_context.MascotaEdad.ToList();
-            ViewBag.Tamano=_context.MascotaTamano.ToList();
-            var mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).ToList();
-            if(tipoPelo==0 && sexo==null && tamano==0){
-                mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).OrderByDescending(x=>x.Id).ToList();
+        public IActionResult Index(string edad, string tamano, string tipoPelo)
+        {            
+            var mascotas = _context.Mascotas.ToList();
+            if(tipoPelo==null && edad==null && tamano==null){
+                mascotas = _context.Mascotas.OrderByDescending(x=>x.Id).ToList();
             }else{
-                if(sexo=="0" && tamano==0 && tipoPelo!=0){
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.TipoPeloId==tipoPelo).ToList();
-                }else if(sexo=="0" && tamano!=0 && tipoPelo==0){
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.TamanoId==tamano).ToList();
-                }else if(sexo!="0" && tamano==0 && tipoPelo==0){
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.Sexo==sexo).ToList();
-                }else if(sexo=="0"){
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.TamanoId==tamano && x.TipoPeloId==tipoPelo).ToList();
-                }else if(tamano==0){
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.Sexo==sexo && x.TipoPeloId==tipoPelo).ToList();
-                }else if(tipoPelo==0){
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.TamanoId==tamano && x.Sexo==sexo ).ToList();
+                if(edad=="0" && tamano=="0" && tipoPelo!="0"){
+                    mascotas = _context.Mascotas.Where(x=>x.TipoPelo==tipoPelo).ToList();
+                }else if(edad=="0" && tamano!="0" && tipoPelo=="0"){
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano).ToList();
+                }else if(edad!="0" && tamano=="0" && tipoPelo=="0"){
+                    mascotas = _context.Mascotas.Where(x=>x.Edad==edad).ToList();
+                }else if(edad=="0"){
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.TipoPelo==tipoPelo).ToList();
+                }else if(tamano=="0"){
+                    mascotas = _context.Mascotas.Where(x=>x.Edad==edad && x.TipoPelo==tipoPelo).ToList();
+                }else if(tipoPelo=="0"){
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Edad==edad ).ToList();
                 }else{
-                    mascotas = _context.Mascotas.Include(x=>x.Edad).Include(x=>x.TipoPelo).Include(x=>x.Tamano).Where(x=>x.TamanoId==tamano && x.Sexo==sexo && x.TipoPeloId==tipoPelo).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Edad==edad && x.TipoPelo==tipoPelo).ToList();
                 }
             }
             ViewBag.m = mascotas;

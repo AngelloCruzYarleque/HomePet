@@ -2,7 +2,6 @@
     ViewData["Title"] = "Registro de Mascotas";
 }
 @model Mascota
-<!--
 <div class="container">
     <h1 style="text-align:center">Registro de Mascotas</h1>
     <form asp-action="registrarmascota" method="post" enctype="multipart/form-data">
@@ -14,7 +13,7 @@
         <div>
             <label>Edad:</label>
             <select class="custom-select" asp-for="Edad">
-                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="0">--Seleccionar--</option>
                 <option value="3 - 6 meses">3 - 6 meses</option>
                 <option value="6 meses - 1 año">6 meses - 1 año</option>
                 <option value="1 - 3 años">1 - 3 años</option>
@@ -25,7 +24,7 @@
         <div>
             <label>Sexo:</label>
             <select class="custom-select" asp-for="Sexo">
-                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="0">--Seleccionar--</option>
                 <option value="Macho">Macho</option>
                 <option value="Hembra">Hembra</option>
                 
@@ -34,7 +33,7 @@
         <div>
             <label>Tamaño:</label>
             <select class="custom-select" asp-for="Tamano">
-                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="0">--Seleccionar--</option>
                 <option value="Pequeño">Pequeño</option>
                 <option value="Mediano">Mediano</option>
                 <option value="Grande">Grande</option>
@@ -47,80 +46,18 @@
         <div>
             <label>Tipo de Pelo:</label>
             <select class="custom-select" asp-for="TipoPelo">
-                <option value="Seleccionar">--Seleccionar--</option>
+                <option value="0">--Seleccionar--</option>
                 <option value="Corto">Corto</option>
                 <option value="Mediano">Mediano</option>
                 <option value="Largo">Largo</option>
             </select>
-        </div></br>        
+        </div>     
         <div>
             <label>Foto: </label>
             <input type="file" name="photofile">
-        </div></br> 
+        </div>
         <div class="container">
             <button class="btn btn-success" type="submit">Registrar Mascota</button>
         </div>
     </form>
 </div>
--->
-<div class="container">
-    <h1 style="text-align:center">Registro de Mascotas</h1>
-    <form asp-action="registrarmascota" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="All"></div>
-        <div>
-            <label>Nombre:</label>
-            <input asp-for="Nombre">
-        </div>        
-        <div>
-            <label>Edad:</label>
-            <select class="custom-select" asp-for="EdadId">
-                <option value="Seleccionar">--Seleccionar--</option>      
-                @foreach (var edad in (List<Edad>)ViewBag.Edad)
-                {
-                    <option value="@edad.Id">@edad.NombreEdad</option>
-                }      
-            </select>
-        </div>        
-        <div>
-            <label>Sexo:</label>
-            <select class="custom-select" asp-for="Sexo">
-                <option value="Seleccionar">--Seleccionar--</option>
-                <option value="Macho">Macho</option>
-                <option value="Hembra">Hembra</option>
-                
-            </select>
-        </div>
-        <div>
-            <label>Tamaño:</label>
-            <select class="custom-select" asp-for="TamanoId">
-                <option value="Seleccionar">--Seleccionar--</option>
-                @foreach (var tamano in (List<Tamano>)ViewBag.Tamano)
-                {
-                    <option value="@tamano.Id">@tamano.NombreTamano</option>
-                }
-            </select>
-        </div>
-        <div>
-             <label>Peso:</label>
-            <input asp-for="Peso">
-        </div>
-        <div>
-            <label>Tipo de Pelo:</label>
-            <select class="custom-select" asp-for="TipoPeloId">
-                <option value="Seleccionar">--Seleccionar--</option>
-                @foreach (var tipoP in (List<TipoPelo>)ViewBag.TipoPelo)
-                {
-                    <option value="@tipoP.Id">@tipoP.NombreTipoPelo</option>
-                }
-            </select>
-        </div></br>        
-        <div>
-            <label>Foto: </label>
-            <input type="file" name="photofile">
-        </div></br> 
-        <div class="container">
-            <button class="btn btn-success" type="submit">Registrar Mascota</button>
-        </div>
-    </form>
-</div>
-

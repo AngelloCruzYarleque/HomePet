@@ -17,17 +17,14 @@ namespace HomePet.Controllers
             this.hostingEnvironment = h;
         }
         public IActionResult RegistrarMascota()
-        {
-          ViewBag.TipoPelo=_context.MascotaTipoPelo.ToList();
-          ViewBag.Edad=_context.MascotaEdad.ToList();
-          ViewBag.Tamano=_context.MascotaTamano.ToList();
+        {          
           return View();
         }
         [HttpPost]
         public IActionResult RegistrarMascota(Mascota m)
         {
           
-          if(ModelState.IsValid){
+          if(ModelState.IsValid && m.TipoPelo!="0" && m.Sexo!="0" && m.Tamano!="0" && m.Edad!="0"){
               var uploads = Path.Combine(hostingEnvironment.WebRootPath, "imagenes");
               var fullPath = Path.Combine(uploads,m.photofile.FileName);
               m.photofile.CopyTo(new FileStream(fullPath, FileMode.Create));  
@@ -35,10 +32,7 @@ namespace HomePet.Controllers
               _context.Add(m);
               _context.SaveChanges();
               return RedirectToAction("Index","Home");
-          }
-          ViewBag.TipoPelo=_context.MascotaTipoPelo.ToList();
-          ViewBag.Edad=_context.MascotaEdad.ToList();
-          ViewBag.Tamano=_context.MascotaTamano.ToList();
+          }          
           return View();        
           
         }

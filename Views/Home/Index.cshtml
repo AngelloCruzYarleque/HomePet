@@ -18,20 +18,20 @@
                     <label for="">Tamaño</label>
                     <select name="tamano" id="" class="form-control" style="width: 200px;">
                             <option value="0">Seleccionar</option>
-                            @foreach (var tamano in (List<Tamano>)ViewBag.Tamano)
-                            {
-                                <option value="@tamano.Id">@tamano.NombreTamano</option>
-                            }
+                            <option value="Pequeño">Pequeño</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Grande">Grande</option>
                     </select>
             </div>
             <div class="col-3">
-                    <label for="">Tipo de Pelo</label>
+                    <label for="">Edad</label>
                     <select name="tipoPelo" id="" class="form-control" style="width: 200px;">
                             <option value="0">Seleccionar</option>
-                            @foreach (var tipoP in (List<TipoPelo>)ViewBag.TipoPelo)
-                            {
-                                <option value="@tipoP.Id">@tipoP.NombreTipoPelo</option>
-                            }
+                            <option value="3 - 6 meses">3 - 6 meses</option>
+                            <option value="6 meses - 1 año">6 meses - 1 año</option>
+                            <option value="1 - 3 años">1 - 3 años</option>
+                            <option value="4 - 7 años">4 - 7 años</option>
+                            <option value="+7 años">+7 años</option>  
                     </select>
             </div>
             <div class="col-3" style="background-color: azure"><button type="submit" class="btn btn-default">Filtrar</button></div>            
@@ -46,9 +46,9 @@
     {
         <div> 
             @m.Nombre
-            @m.Edad.NombreEdad
-            @m.Tamano.NombreTamano
-            @m.TipoPelo.NombreTipoPelo
+            @m.Edad
+            @m.Tamano
+            @m.TipoPelo
             @m.Sexo
             <img src="~/imagenes/@m.Foto" alt="">
         </div>
