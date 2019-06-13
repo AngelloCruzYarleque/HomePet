@@ -49,6 +49,12 @@ namespace HomePet.Controllers
         {
           return View();
         }
+        public IActionResult Detalles(int id)
+        {
+          var mascotaEspecifica = _context.Mascotas.Where(x=>x.Id==id).ToList();
+          ViewBag.mE = mascotaEspecifica;
+          return View();
+        }
         [HttpPost]
         public IActionResult Contacto(Contacto c)
         {

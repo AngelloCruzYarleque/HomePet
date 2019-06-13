@@ -40,19 +40,18 @@
 
 
 
-<h1>Mascotas</h1>
-<div>
-    @foreach (var m in mascota)
-    {
-        <div> 
-            @m.Nombre
-            @m.Edad
-            @m.Tamano
-            @m.TipoPelo
-            @m.Sexo
-            <img src="~/imagenes/@m.Foto" alt="">
+<div class="container">
+        <h1 class="text-center">Mascotas</h1>
+        <div class="contenedorMascotas">
+                @foreach (var m in mascota)
+                {
+                <div class="mascota">
+                        <a href="~/home/detalles?id=@m.Id">
+                        <img src="~/imagenes/@m.Foto" width="150">
+                        <p style="text-align: center">@m.Nombre</p>
+                        </a>
+                </div>
+                }
         </div>
-           
-        
-    }
 </div>
+

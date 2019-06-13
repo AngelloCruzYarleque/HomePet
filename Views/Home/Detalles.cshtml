@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Mascota";
+    var mascota = (List<Mascota>)ViewBag.mE;
+}
+@model List<Mascota>
+<div class="container">
+    <div class="contenedordetallesMascota">
+        @foreach (var m in mascota) {
+        <div class="row">
+            <div class="col-sm">
+                <div class="text-center">
+                    <h2>@m.Nombre</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-4">
+                    <div style="text-align: center">
+                                <img src="~/imagenes/@m.Foto" alt="Responsive image" width=240px height=360px>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="datosMascota">
+                        <strong>Edad:</strong>
+                        <p>@m.Edad</p>
+                        <strong>Sexo:</strong>
+                        <p>@m.Sexo</p>
+                        <strong>Tamaño:</strong>
+                        <p>@m.Tamano</p>
+                        <strong>Peso:</strong>
+                        <p>@m.Peso</p>
+                        <strong>Tipo de Pelo:</strong>
+                        <p>@m.TipoPelo</p>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="mt-3 text-center">
+                    <form action="~/Mascota/AdoptarMascota" method="get">
+                        <input type="hidden" name="id" value="@m.Id">
+                        <button type="submit" class="btn btn-dark">Adoptar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        }
+        <br><br>
+    </div>
+</div>

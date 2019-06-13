@@ -36,6 +36,12 @@ namespace HomePet.Controllers
           return View();        
           
         }
+        public IActionResult AdoptarMascota(int id)
+        {
+          var mascotaEspecifica = _context.Mascotas.Where(x=>x.Id==id).ToList();
+          ViewBag.mE = mascotaEspecifica;
+          return View();
+        }
 
     }
 }
