@@ -1,8 +1,11 @@
+
 @{
     
     var mascota = (List<Mascota>)ViewBag.mE;
     ViewData["Title"] ="HomePet-"+ mascota[0].Nombre;
 }
+@if (Context.User.Identity.IsAuthenticated) {
+
 @model List<Mascota>
 <div class="container">
     <div class="contenedordetallesMascota">
@@ -49,3 +52,11 @@
         <br><br>
     </div>
 </div>
+}else{
+        <h1>NO ESTA AUTORIZADO PARA VISUALIZAR ESTA PAGINA</h1>
+        <div class="container">
+                <img src="~/imagenes/error.png" alt="" >
+        </div>
+
+        
+}

@@ -71,5 +71,29 @@ namespace HomePet.Controllers
 
             return View(vm);
         }
+        public IActionResult CambiarContrasena() {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CambiarContrasena(CambiarContrasenaViewModel vm) {
+            if (ModelState.IsValid) {
+                var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+                var resultado = _userManager.ChangePasswordAsync(user, vm.ContrasenaActual, vm.ContrasenaNueva);
+
+                if (resultado.Result == IdentityResult.Success) {
+                    return RedirectToAction("Index", "Home");
+                }
+                else {
+                    foreach (var error in resultado.Result.Errors) {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+               
+            }
+            
+            return View(vm);
+        }
+
     }
 }
