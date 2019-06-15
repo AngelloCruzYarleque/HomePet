@@ -3,55 +3,79 @@
     var mascota = (List<Mascota>)ViewBag.m;
 }
 @model List<Mascota>
-<form asp-action="Index" method ="GET">
-            <div id="menu" class = "row">
-            <div class="col-3">
-                    <label for="">Sexo</label>
-                    <select name="sexo" id="" class="form-control" style="width: 200px;">
-                            <option value="0">Seleccionar</option>
-                            <option value="Macho">Macho</option>
-                            <option value="Hembra">Hembra</option>
-                    </select>
-            </div>
-            <div class="col-3">
-                     
-                    <label for="">Tamaño</label>
-                    <select name="tamano" id="" class="form-control" style="width: 200px;">
-                            <option value="0">Seleccionar</option>
-                            <option value="Pequeño">Pequeño</option>
-                            <option value="Mediano">Mediano</option>
-                            <option value="Grande">Grande</option>
-                    </select>
-            </div>
-            <div class="col-3">
-                    <label for="">Edad</label>
-                    <select name="Edad" id="" class="form-control" style="width: 200px;">
-                            <option value="0">Seleccionar</option>
-                            <option value="3 - 6 meses">3 - 6 meses</option>
-                            <option value="6 meses - 1 año">6 meses - 1 año</option>
-                            <option value="1 - 3 años">1 - 3 años</option>
-                            <option value="4 - 7 años">4 - 7 años</option>
-                            <option value="+7 años">+7 años</option>  
-                    </select>
-            </div>
-            <div class="col-3" style="background-color: azure"><button type="submit" class="btn btn-default">Filtrar</button></div>            
-</form>
+
+<div class="container">
+        <form asp-action="Index" method ="GET">
+                <div class = "row">
+                        <div class="col-sm-3">
+                                <label for="">Sexo</label>
+                                <select name="sexo" id="" class="form-control" style="width: 200px;">
+                                        <option value="0">Seleccionar</option>
+                                        <option value="Macho">Macho</option>
+                                        <option value="Hembra">Hembra</option>
+                                </select>
+                        </div>
+                        <div class="col-3">
+                                
+                                <label for="">Tamaño</label>
+                                <select name="tamano" id="" class="form-control" style="width: 200px;">
+                                        <option value="0">Seleccionar</option>
+                                        <option value="Pequeño">Pequeño</option>
+                                        <option value="Mediano">Mediano</option>
+                                        <option value="Grande">Grande</option>
+                                </select>
+                        </div>
+                        <div class="col-sm-3">
+                                <label for="">Edad</label>
+                                <select name="Edad" id="" class="form-control" style="width: 200px;">
+                                        <option value="0">Seleccionar</option>
+                                        <option value="3 - 6 meses">3 - 6 meses</option>
+                                        <option value="6 meses - 1 año">6 meses - 1 año</option>
+                                        <option value="1 - 3 años">1 - 3 años</option>
+                                        <option value="4 - 7 años">4 - 7 años</option>
+                                        <option value="+7 años">+7 años</option>  
+                                </select>
+                        </div>
+                        <div class="col-sm-3">
+                                <div style="text-align: center; padding: 15px">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Filtrar</button>
+                                </div>
+                        </div>    
+                </div>    
+        </form>
+</div>
 
 
 
 
 <div class="container">
-        <h1 class="text-center">Mascotas</h1>
-        <div class="contenedorMascotas">
-                @foreach (var m in mascota)
-                {
-                <div class="mascota">
-                        <a href="~/home/detalles?id=@m.Id">
-                        <img src="~/imagenes/@m.Foto" width="150">
-                        <p style="text-align: center">@m.Nombre</p>
-                        </a>
+        <div class="row">
+                <div class="col-sm">
+                        <div class="text-center">
+                                <h2>Mascotas</h2>
+                        </div>
                 </div>
-                }
         </div>
+        @if(mascota.Count==0){
+                <h2 style="color: red" class="text-center">No se encontraton resultados</h2>
+        }else{
+                <div class="fondoIndex">
+                        <div class="row">
+                                @foreach (var m in mascota)
+                                {
+                                        <div style="margin-top: 10px;margin-bottom: 10px" class="col-sm-3">
+                                                <div class="mascota">
+                                                        <a href="~/home/detalles/@m.Id">
+                                                                <img src="~/imagenes/@m.Foto" width="150" height="180"><br><br>
+                                                                <p style="text-align: center">@m.Nombre</p>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                }
+                        </div>
+                </div>
+        }
 </div>
+
+
 

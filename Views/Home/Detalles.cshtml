@@ -1,6 +1,7 @@
 @{
-    ViewData["Title"] = "Mascota";
+    
     var mascota = (List<Mascota>)ViewBag.mE;
+    ViewData["Title"] ="HomePet-"+ mascota[0].Nombre;
 }
 @model List<Mascota>
 <div class="container">
