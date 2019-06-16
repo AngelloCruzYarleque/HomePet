@@ -65,7 +65,10 @@ input[type="password"]:focus {
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomePet</a>
+                
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img class="img-fluid" src="~/imagenes/Logo.png" alt="" width="100px">
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -76,61 +79,63 @@ input[type="password"]:focus {
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                          @if (Context.User.Identity.IsAuthenticated) {
-                                if(Context.User.Identity.Name=="Admin"){
-                                    <li class="nav-item">
-                                        <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarTipoMascota">Registrar Tipo de Mascota</a>
-                                    </li> 
-                                }
-                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
-                            </li>        
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contacto">Contacto</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user"></span> 
-                                    <strong>Bienvenido(a), @Context.User.Identity.Name</strong>
-                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="navbar-login">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="text-center">
-                                                        <a class="btn btn-sm" style="color: blue; font-size: 16px" asp-controller="Cuenta" asp-action="CambiarContrasena"><strong>Cambiar Contraseña</strong></a>
-                                                    </p>
-                                                    <p class="text-center">
-                                                        <a style="background-color: yellow; color: black"asp-controller="Cuenta" asp-action="MisMascotas" class="btn btn-primary btn-block btn-sm"><strong>Mis Mascotas</strong></a>
-                                                    </p>
-                                                </div>
+                            if(Context.User.Identity.Name=="Admin"){
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarTipoMascota">Registrar Tipo de Mascota</a>
+                                </li> 
+                            }
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
+                        </li>        
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contacto">Contacto</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1 navbar-right">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user"></span> 
+                                <strong>Bienvenido(a), @Context.User.Identity.Name</strong>
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-login">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <p class="text-center">
+                                                    <a  class="btn btn-light btn-block" asp-controller="Cuenta" asp-action="CambiarContrasena"><strong>Cambiar Contraseña</strong></a>
+                                                </p>
+                                                <p class="text-center">
+                                                    <a class="btn btn-light btn-block" asp-controller="Cuenta" asp-action="MisMascotas" class="btn btn-primary btn-block btn-sm"><strong>Mis Mascotas</strong></a>
+                                                </p>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <div class="navbar-login navbar-login-session">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="text-center">
-                                                        <a asp-controller="Cuenta" asp-action="Logout" class="btn btn-danger btn-block">Cerrar Sesion</a>
-                                                    </p>
-                                                </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="navbar-login navbar-login-session">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <p class="text-center">
+                                                    <a asp-controller="Cuenta" asp-action="Logout" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                                </p>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
-                            </li>
-                         }
-                         else{
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="RegistrarUsuario">Crear Usuario</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="Login">Login</a>
-                            </li>
-                         }
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        }
+                        else{
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="RegistrarUsuario">Crear Usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="Login">Login</a>
+                        </li>
+                        }
                     </ul>
                 </div>
             </div>
