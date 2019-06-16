@@ -76,9 +76,14 @@ input[type="password"]:focus {
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                          @if (Context.User.Identity.IsAuthenticated) {
-                            <li class="nav-item">
+                                if(Context.User.Identity.Name=="Admin"){
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarTipoMascota">Registrar Tipo de Mascota</a>
+                                    </li> 
+                                }
+                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
-                            </li> 
+                            </li>        
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contacto">Contacto</a>
                             </li>

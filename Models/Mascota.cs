@@ -23,5 +23,6 @@ namespace HomePet.Models
         public IFormFile  photofile { get; set; }
         public string UserName { get; set; }
         public string exDueno { get; set; }
+        public int IdTipoMascota { get; set; }
     }
 }

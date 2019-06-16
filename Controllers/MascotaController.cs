@@ -48,6 +48,20 @@ namespace HomePet.Controllers
           return View();        
           
         }
+        public IActionResult RegistrarTipoMascota()
+        {          
+          return View();
+        }
+        [HttpPost]
+        public IActionResult RegistrarTipoMascota(TipoMascota tp) 
+        {        
+          if(ModelState.IsValid){                    
+              _context.Add(tp);
+              _context.SaveChanges();
+              return RedirectToAction("Index","Home");
+          }     
+          return View();
+        }
         
 
     }

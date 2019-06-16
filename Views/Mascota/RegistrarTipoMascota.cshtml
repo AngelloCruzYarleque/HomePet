@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Registro Tipo de Mascotas";
+}
+@model TipoMascota
+@if (Context.User.Identity.IsAuthenticated) {
+    if(Context.User.Identity.Name=="Admin"){
+        <div class="container">
+    <h1 style="text-align:center">Registro de Tipo de Mascotas</h1>
+    <form asp-action="registrartipomascota" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label>Descripcion:</label>
+            <input asp-for="Descripcion">
+        </div>
+        <div class="form-group">
+            <button style="background-color: green" class="btn btn-primary btn-lg btn-block" type="submit">Registrar Tipo Mascota</button>
+        </div>
+
+    </form>
+</div>}else{
+    <h1>NO ESTA AUTORIZADO PARA VISUALIZAR ESTA PAGINA</h1>
+        <div class="container">
+                <img src="~/imagenes/error.png" alt="" >
+        </div>
+}
+    }
+
+else{
+    <h1>NO ESTA AUTORIZADO PARA VISUALIZAR ESTA PAGINA</h1>
+        <div class="container">
+                <img src="~/imagenes/error.png" alt="" >
+        </div>
+}            
