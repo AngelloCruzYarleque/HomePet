@@ -63,7 +63,7 @@ input[type="password"]:focus {
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomePet</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -73,41 +73,58 @@ input[type="password"]:focus {
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HomePet</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
-                        
                          @if (Context.User.Identity.IsAuthenticated) {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacto">Contacto</a>
-                            
-                        </li>
-                        
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Bienvenido(a), @Context.User.Identity.Name
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Cuenta" asp-action="MisMascotas">Mis Mascotas</a>
-                                
-                                <a class="dropdown-item" asp-area="" asp-controller="Cuenta" asp-action="CambiarContrasena">Cambiar Contraseña</a>
-                            <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Cuenta" asp-action="Logout">Cerrar Sesión</a>
-                                
-                            </div>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contacto">Contacto</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-user"></span> 
+                                    <strong>Bienvenido(a), @Context.User.Identity.Name</strong>
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-login">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="text-center">
+                                                        <a class="btn btn-sm" style="color: blue; font-size: 16px" asp-controller="Cuenta" asp-action="CambiarContrasena"><strong>Cambiar Contraseña</strong></a>
+                                                    </p>
+                                                    <p class="text-center">
+                                                        <a style="background-color: yellow; color: black"asp-controller="Cuenta" asp-action="MisMascotas" class="btn btn-primary btn-block btn-sm"><strong>Mis Mascotas</strong></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="text-center">
+                                                        <a asp-controller="Cuenta" asp-action="Logout" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
                          }
                          else{
-                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="RegistrarUsuario">Crear Usuario</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="Login">Login</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="RegistrarUsuario">Crear Usuario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="Login">Login</a>
+                            </li>
                          }
                     </ul>
                 </div>

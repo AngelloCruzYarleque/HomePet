@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace HomePet.Controllers
 {
@@ -31,16 +32,18 @@ namespace HomePet.Controllers
         {
           var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
           if(ModelState.IsValid && m.TipoPelo!="0" && m.Sexo!="0" && m.Tamano!="0" && m.Edad!="0"){
-            
+
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "imagenes");
-                var fullPath = Path.Combine(uploads,m.photofile.FileName);
+                var nombrearchivo = string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
+              var extension=Path.GetExtension(m.photofile.FileName);
+                var photoName=nombrearchivo+extension;  
+                var fullPath = Path.Combine(uploads,photoName);
                 m.photofile.CopyTo(new FileStream(fullPath, FileMode.Create));  
-                m.Foto = m.photofile.FileName;    
+                m.Foto = photoName;   
                 m.exDueno=user.UserName;                 
                 _context.Add(m);
                 _context.SaveChanges();
                 return RedirectToAction("Index","Home");
-            
           }          
           return View();        
           

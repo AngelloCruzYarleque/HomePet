@@ -7,16 +7,21 @@
 <form asp-action="CambiarContrasena" method="post">
     <div asp-validation-summary="All"></div>
 
-    <div>
-        Contraseña actual:  <input asp-for="ContrasenaActual">
+    <div class="form-group">
+        <label>Contraseña actual:</label> 
+        <input asp-for="ContrasenaActual">
     </div>
-    <div>
-        Contraseña nuevo: <input asp-for="ContrasenaNueva">
+    <div class="form-group">
+        <label>Contraseña nueva:</label> 
+        <input asp-for="ContrasenaNueva">
     </div>
-    <div>
-        Confirmar Contraseña: <input asp-for="ContrasenaConfirmacion">
+    <div class="form-group">
+        <label>Confirmar Contraseña:</label>
+        <input asp-for="ContrasenaConfirmacion">
     </div>
-    <button>Cambiar pass</button>
+    <div class="form-group">
+            <button style="background-color: green" class="btn btn-primary btn-lg btn-block" type="submit">Cambiar Contraseña</button>
+    </div>
 </form>
 }else{
         <h1>NO ESTA AUTORIZADO PARA VISUALIZAR ESTA PAGINA</h1>

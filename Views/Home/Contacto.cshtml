@@ -4,19 +4,19 @@
         <div asp-validation-summary="All"></div>        
                 <div class="md-form"> 
                 <label for="form7">Mensaje</label>               
-                <textarea asp-for="Mensaje" id="form7" class="md-textarea form-control" rows="3"></textarea>
+                <textarea style="resize:none;" asp-for="Mensaje" id="form7" class="md-textarea form-control" rows="3"></textarea>
                 
                 </div>
                 
-                <div>
-                <label for="">Tipo de Contacto</label>
-                <select  asp-for="TipoContacto">
-                    <option value="0">Reclamo</option>
-                    <option value="1">Sugerencia</option>
-                </select>
+                <div class="form-group">
+                        <label for="">Tipo de Contacto</label>
+                        <select  class="custom-select" asp-for="TipoContacto">
+                        <option value="0">Reclamo</option>
+                        <option value="1">Sugerencia</option>
+                        </select>
 
                 </div>
-        <div class="container">
+        <div class="form-group">
                 <button class="btn btn-success" type="submit">Enviar</button>
         </div>
 </form>
