@@ -75,20 +75,31 @@ input[type="password"]:focus {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HomePet</a>
                         </li>
+                        
                          @if (Context.User.Identity.IsAuthenticated) {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Mascota" asp-action="RegistrarMascota">Registrar Mascotas</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacto">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="CambiarContrasena">Cambiar Contraseña</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="Logout">Cerrar Sesión</a>
+                            
                         </li>
                         
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Bienvenido(a), @Context.User.Identity.Name
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Cuenta" asp-action="MisMascotas">Mis Mascotas</a>
+                                
+                                <a class="dropdown-item" asp-area="" asp-controller="Cuenta" asp-action="CambiarContrasena">Cambiar Contraseña</a>
+                            <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Cuenta" asp-action="Logout">Cerrar Sesión</a>
+                                
+                            </div>
+                        </li>
                          }
                          else{
                              <li class="nav-item">

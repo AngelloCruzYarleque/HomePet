@@ -1,4 +1,5 @@
 @model CambiarContrasenaViewModel
+
 @if (Context.User.Identity.IsAuthenticated) {
 
 <h1>Cambiar contraseña</h1>
@@ -7,7 +8,7 @@
     <div asp-validation-summary="All"></div>
 
     <div>
-        Contraseña actual: <input asp-for="ContrasenaActual">
+        Contraseña actual:  <input asp-for="ContrasenaActual">
     </div>
     <div>
         Contraseña nuevo: <input asp-for="ContrasenaNueva">

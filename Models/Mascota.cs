@@ -21,5 +21,7 @@ namespace HomePet.Models
         public string Foto { get; set; }
         [NotMapped]
         public IFormFile  photofile { get; set; }
+        public string UserName { get; set; }
+        public string exDueno { get; set; }
     }
 }

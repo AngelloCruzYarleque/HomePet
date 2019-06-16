@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using HomePet.Models;
 using HomePet.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace HomePet.Controllers
 {
@@ -20,29 +21,31 @@ namespace HomePet.Controllers
         }
         public IActionResult Index(string edad, string tamano, string sexo)
         {            
-            var mascotas = _context.Mascotas.ToList();
+            
+            var mascotas = _context.Mascotas.Where(x=> x.UserName==null).ToList();
             if(sexo==null && edad==null && tamano==null){
-                mascotas = _context.Mascotas.OrderByDescending(x=>x.Id).ToList();
+                mascotas = _context.Mascotas.Where(x=> x.UserName==null).OrderByDescending(x=>x.Id).ToList();
             }else{     
                 if(sexo=="0" && edad=="0" && tamano=="0"){
-                    mascotas = _context.Mascotas.OrderByDescending(x=>x.Id).ToList();              
+                    mascotas = _context.Mascotas.Where(x=> x.UserName==null).OrderByDescending(x=>x.Id).ToList();              
                 }else if(edad=="0" && tamano=="0" && sexo!="0"){
-                    mascotas = _context.Mascotas.Where(x=>x.Sexo==sexo).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Sexo==sexo && x.UserName==null).ToList();
                 }else if(edad=="0" && tamano!="0" && sexo=="0"){
-                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.UserName==null).ToList();
                 }else if(edad!="0" && tamano=="0" && sexo=="0"){
-                    mascotas = _context.Mascotas.Where(x=>x.Edad==edad).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Edad==edad && x.UserName==null).ToList();
                 }else if(edad=="0"){
-                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Sexo==sexo).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Sexo==sexo && x.UserName==null).ToList();
                 }else if(tamano=="0"){
-                    mascotas = _context.Mascotas.Where(x=>x.Edad==edad && x.Sexo==sexo).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Edad==edad && x.Sexo==sexo && x.UserName==null).ToList();
                 }else if(sexo=="0"){
-                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Edad==edad ).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Edad==edad && x.UserName==null).ToList();
                 }else{
-                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Edad==edad && x.Sexo==sexo).ToList();
+                    mascotas = _context.Mascotas.Where(x=>x.Tamano==tamano && x.Edad==edad && x.Sexo==sexo && x.UserName==null).ToList();
                 }
             }
             ViewBag.m = mascotas;
+            
             return View();
         }
         public IActionResult Contacto()
@@ -53,8 +56,10 @@ namespace HomePet.Controllers
         {
           var mascotaEspecifica = _context.Mascotas.Where(x=>x.Id==id).ToList();
           ViewBag.mE = mascotaEspecifica;
+          
           return View();
         }
+        
         [HttpPost]
         public IActionResult Contacto(Contacto c)
         {

@@ -1,8 +1,8 @@
 
-@{
-    
+@{    
     var mascota = (List<Mascota>)ViewBag.mE;
     ViewData["Title"] ="HomePet-"+ mascota[0].Nombre;
+    
 }
 @if (Context.User.Identity.IsAuthenticated) {
 
@@ -38,16 +38,26 @@
                     </div>
                 </div>
         </div>
+        @if(@m.UserName==null){
         <div class="row">
             <div class="col-sm">
                 <div class="mt-3 text-center">
-                    <form action="~/Mascota/AdoptarMascota" method="get">
+                    <form action="~/Cuenta/AdoptarMascota" method="get">
                         <input type="hidden" name="id" value="@m.Id">
                         <button type="submit" class="btn btn-dark">Adoptar</button>
                     </form>
                 </div>
             </div>
         </div>
+        }else{
+            <div class="row">
+            <div class="col-sm">
+                <div class="mt-3 text-center">
+                    Adoptado
+                </div>
+            </div>
+        </div>
+        }
         }
         <br><br>
     </div>

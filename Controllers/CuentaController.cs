@@ -3,6 +3,9 @@ using HomePet.Data;
 using HomePet.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
+
 namespace HomePet.Controllers
 {
     public class CuentaController: Controller
@@ -59,10 +62,11 @@ namespace HomePet.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel vm) {
             if (ModelState.IsValid) {
-                var resultado = _signInManager.PasswordSignInAsync(vm.Usuario, vm.Password, false, false);
-            
+                var resultado = _signInManager.PasswordSignInAsync(vm.Usuario, vm.Password, false, false);                
                 if (resultado.Result.Succeeded) {
+                    
                     return RedirectToAction("index", "home");
+
                 }
                 else {
                     ModelState.AddModelError("", "Usuario o contraseña incorrectos");
@@ -78,10 +82,12 @@ namespace HomePet.Controllers
         [HttpPost]
         public IActionResult CambiarContrasena(CambiarContrasenaViewModel vm) {
             if (ModelState.IsValid) {
+                
                 var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
                 var resultado = _userManager.ChangePasswordAsync(user, vm.ContrasenaActual, vm.ContrasenaNueva);
 
                 if (resultado.Result == IdentityResult.Success) {
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else {
@@ -94,6 +100,27 @@ namespace HomePet.Controllers
             
             return View(vm);
         }
-
+        public IActionResult AdoptarMascota(int id)
+        {
+            var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            var mascota = _context.Mascotas.FirstOrDefault(x=> x.Id==id);
+            if(user.UserName!=mascota.exDueno){
+                
+                mascota.UserName=user.UserName;
+                _context.SaveChanges();
+                return RedirectToAction("Index","Home");
+            }else{
+                return RedirectToAction("Index","Home");
+            }
+          
+        }
+        public IActionResult MisMascotas()
+        {
+          var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+          var mascotas = _context.Mascotas.Where(x=> x.UserName==user.UserName).ToList();           
+            ViewBag.m = mascotas;
+          ViewBag.usuario = user.UserName;
+          return View();
+        }
     }
 }

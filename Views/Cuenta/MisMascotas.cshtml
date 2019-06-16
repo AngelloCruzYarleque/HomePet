@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Home Page";
+    var mascota = (List<Mascota>)ViewBag.m;
+    
+}
+@model List<Mascota>
+<div class="container">
+    
+        <div class="row">
+                <div class="col-sm">
+                        <div class="text-center">
+                                <h1>Mis Mascotas</h1>
+                        </div>
+                </div>
+        </div>
+        @if(mascota.Count==0){
+                <h2 style="color: red" class="text-center">No se encontraton resultados</h2>
+        }else{
+                <div class="fondoIndex">
+                        <div class="row">
+                                @foreach (var m in mascota)
+                                {
+                                        <div style="margin-top: 10px;margin-bottom: 10px" class="col-sm-3">
+                                                <div class="mascota">
+                                                        <a href="~/home/detalles/@m.Id">
+                                                                <img src="~/imagenes/@m.Foto" width="150" height="180"><br><br>
+                                                                <p style="text-align: center">@m.Nombre</p>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                }
+                        </div>
+                </div>
+        }
+</div>
