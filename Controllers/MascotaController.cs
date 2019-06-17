@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace HomePet.Controllers
 {
@@ -45,6 +46,8 @@ namespace HomePet.Controllers
                 m.exDueno=user.UserName;                 
                 _context.Add(m);
                 _context.SaveChanges();
+                
+                HttpContext.Session.SetString("valida","Mascota registrada con Exito");
                 return RedirectToAction("Index","Home");
           }          
           var TipoMascota = _context.TipoMascotas.OrderByDescending(x=>x.Id).ToList();          
@@ -63,6 +66,7 @@ namespace HomePet.Controllers
           if(ModelState.IsValid){                    
               _context.Add(tp);
               _context.SaveChanges();
+              
               return RedirectToAction("Index","Home");
           }     
           

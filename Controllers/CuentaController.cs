@@ -37,6 +37,8 @@ namespace HomePet.Controllers
                 var resultado = _userManager.CreateAsync(user, vm.Password);
 
                 if (resultado.Result == IdentityResult.Success) {
+                    
+                    HttpContext.Session.SetString("valida","Su cuenta se ha Creado Correctamente");
                     return RedirectToAction("index", "home");
                 }
                 else {
@@ -63,8 +65,7 @@ namespace HomePet.Controllers
         public IActionResult Login(LoginViewModel vm) {
             if (ModelState.IsValid) {
                 var resultado = _signInManager.PasswordSignInAsync(vm.Usuario, vm.Password, false, false);                
-                if (resultado.Result.Succeeded) {
-                    
+                if (resultado.Result.Succeeded) {                    
                     return RedirectToAction("index", "home");
 
                 }
@@ -86,8 +87,8 @@ namespace HomePet.Controllers
                 var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
                 var resultado = _userManager.ChangePasswordAsync(user, vm.ContrasenaActual, vm.ContrasenaNueva);
 
-                if (resultado.Result == IdentityResult.Success) {
-                    
+                if (resultado.Result == IdentityResult.Success) {                    
+                    HttpContext.Session.SetString("valida","Su contraseña se Cambio con exito");
                     return RedirectToAction("Index", "Home");
                 }
                 else {
@@ -120,10 +121,12 @@ namespace HomePet.Controllers
                     mascota.UserName=user.UserName;
                     a.UserName=user.UserName;
                     _context.Add(a);
-                    _context.SaveChanges();
+                    _context.SaveChanges();                   
+                    HttpContext.Session.SetString("valida","Adopcion Tramitada con Exito");
                     return RedirectToAction("Index","Home");
                 }else{
-                    ViewBag.Error="Usted no puede Adoptar su Mascota";
+                   
+                    HttpContext.Session.SetString("valida","Usted no puede Adoptar su Mascota");
                     return RedirectToAction("Index","Home");
                 }  
             }          

@@ -34,6 +34,7 @@ namespace HomePet.Controllers
                 }                
             ViewBag.m = mascotas;
             ViewBag.tipo =TipoMascotas;
+            TempData["Validacion"]=HttpContext.Session.GetString("valida");
             return View();
         }
         public IActionResult Contacto()
@@ -54,6 +55,8 @@ namespace HomePet.Controllers
            if(ModelState.IsValid){                    
               _context.Add(c);
               _context.SaveChanges();
+              HttpContext.Session.SetString("valida","Su mensaje ha sido enviado con exito");
+              
               return RedirectToAction("Index","Home");
           }     
           return View();
