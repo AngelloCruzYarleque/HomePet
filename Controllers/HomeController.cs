@@ -31,8 +31,7 @@ namespace HomePet.Controllers
                     mascotas = mascotas.Where(x=>x.Edad==edad).ToList();
                 }if(tipo!=0){
                     mascotas = _context.Mascotas.Where(x=>x.IdTipoMascota==tipo).ToList();
-                }
-                
+                }                
             ViewBag.m = mascotas;
             ViewBag.tipo =TipoMascotas;
             return View();

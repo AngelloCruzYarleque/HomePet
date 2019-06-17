@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Adopción de Mascota";
     var tipo = (List<TipoMascota>)ViewBag.precio;
+    var id = ViewBag.Id;
 }
 @model Adopta
 @if (Context.User.Identity.IsAuthenticated) {
@@ -43,7 +44,10 @@
         </div> 
         <div class="form-group">
             <label>Precio:</label>
-            @tipo.Precio
+            @foreach(var t in tipo){
+                @t.Precio
+            }
+            
         </div> 
         <div class="form-group">
             <label>Estado Civil:</label>
@@ -55,7 +59,7 @@
                 <option value="Divorciado">Divorciado(a)</option>
             </select>
         </div>
-           
+        <input type="hidden" name="id" value="@id">
         
         <div class="form-group">
             <button style="background-color: green" class="btn btn-primary btn-lg btn-block" type="submit">Adoptar Mascota</button>

@@ -33,7 +33,7 @@ namespace HomePet.Controllers
         public IActionResult RegistrarMascota(Mascota m)
         {
           var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
-          if(ModelState.IsValid && m.TipoPelo!="0" && m.Sexo!="0" && m.Tamano!="0" && m.Edad!="0" && m.IdTipoMascota!=0){
+          if(ModelState.IsValid && m.TipoPelo!="0" && m.Sexo!="0" && m.Tamano!="0" && m.Edad!="0" && m.IdTipoMascota!=0 && m.photofile!=null){
 
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "imagenes");
                 var nombrearchivo = string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);

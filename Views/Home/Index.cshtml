@@ -8,7 +8,7 @@
 <div class="container">
         <form asp-action="Index" method ="GET">
                 <div class = "row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2.4 mr-4">
                                 <label for="">Sexo</label>
                                 <select name="sexo" id="" class="form-control" style="width: 200px;">
                                         <option value="0">Seleccionar</option>
@@ -16,7 +16,7 @@
                                         <option value="Hembra">Hembra</option>
                                 </select>
                         </div>
-                        <div class="col-3">
+                        <div class="col-sm-2.4 mr-4">
                                 
                                 <label for="">Tamaño</label>
                                 <select name="tamano" id="" class="form-control" style="width: 200px;">
@@ -26,7 +26,7 @@
                                         <option value="Grande">Grande</option>
                                 </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2.4 mr-4">
                                 <label for="">Edad</label>
                                 <select name="Edad" id="" class="form-control" style="width: 200px;">
                                         <option value="0">Seleccionar</option>
@@ -37,7 +37,7 @@
                                         <option value="+7 años">+7 años</option>  
                                 </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-2.4 mr-4">
                                 <label>Tipo de Mascota:</label>
                                 <select name="tipo" id="" class="form-control" style="width: 200px;">
                                         <option value="0">--Seleccionar--</option>
@@ -47,7 +47,7 @@
                                         }
                                 </select>
                         </div> 
-                        <div class="col-sm-3">
+                        <div class="col-sm-2.4">
                                 <div style="text-align: center; padding: 15px">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">Filtrar</button>
                                 </div>
@@ -68,7 +68,7 @@
                 </div>
         </div>
         @if(mascota.Count==0){
-                <h2 style="color: red" class="text-center">No se encontraton resultados</h2>
+                <h2 style="color: red" class="text-center">No se encontraron resultados</h2>
         }else{
                 <div class="fondoIndex">
                         <div class="row">

@@ -100,7 +100,16 @@ namespace HomePet.Controllers
             
             return View(vm);
         }
-        
+        public IActionResult AdoptarMascota(int id)
+        {
+            var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            var mascota = _context.Mascotas.FirstOrDefault(x=> x.Id==id);
+            var tipomascota = _context.TipoMascotas.Where(x=>x.Id==mascota.IdTipoMascota).ToList();
+            ViewBag.precio= tipomascota; 
+            ViewBag.Id=id;    
+          return View();
+        }
+        [HttpPost]
         public IActionResult AdoptarMascota(int id,Adopta a)
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
@@ -109,6 +118,8 @@ namespace HomePet.Controllers
             if(ModelState.IsValid && a.Edad>=18 && a.EstadoCivil!="0"){
                 if(user.UserName!=mascota.exDueno){                
                     mascota.UserName=user.UserName;
+                    a.UserName=user.UserName;
+                    _context.Add(a);
                     _context.SaveChanges();
                     return RedirectToAction("Index","Home");
                 }else{
