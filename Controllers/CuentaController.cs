@@ -100,19 +100,24 @@ namespace HomePet.Controllers
             
             return View(vm);
         }
-        public IActionResult AdoptarMascota(int id)
+        
+        public IActionResult AdoptarMascota(int id,Adopta a)
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
             var mascota = _context.Mascotas.FirstOrDefault(x=> x.Id==id);
-            if(user.UserName!=mascota.exDueno){
-                
-                mascota.UserName=user.UserName;
-                _context.SaveChanges();
-                return RedirectToAction("Index","Home");
-            }else{
-                return RedirectToAction("Index","Home");
-            }
-          
+            var tipomascota = _context.TipoMascotas.Where(x=>x.Id==mascota.IdTipoMascota).ToList();
+            if(ModelState.IsValid && a.Edad>=18 && a.EstadoCivil!="0"){
+                if(user.UserName!=mascota.exDueno){                
+                    mascota.UserName=user.UserName;
+                    _context.SaveChanges();
+                    return RedirectToAction("Index","Home");
+                }else{
+                    ViewBag.Error="Usted no puede Adoptar su Mascota";
+                    return RedirectToAction("Index","Home");
+                }  
+            }          
+            ViewBag.precio= tipomascota;         
+            return View(); 
         }
         public IActionResult MisMascotas()
         {

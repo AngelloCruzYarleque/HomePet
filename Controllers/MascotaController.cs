@@ -25,13 +25,15 @@ namespace HomePet.Controllers
           
         public IActionResult RegistrarMascota()
         {          
+          var TipoMascota = _context.TipoMascotas.OrderByDescending(x=>x.Id).ToList();          
+          ViewBag.Tipo = TipoMascota;
           return View();
         }
         [HttpPost]
         public IActionResult RegistrarMascota(Mascota m)
         {
           var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
-          if(ModelState.IsValid && m.TipoPelo!="0" && m.Sexo!="0" && m.Tamano!="0" && m.Edad!="0"){
+          if(ModelState.IsValid && m.TipoPelo!="0" && m.Sexo!="0" && m.Tamano!="0" && m.Edad!="0" && m.IdTipoMascota!=0){
 
                 var uploads = Path.Combine(hostingEnvironment.WebRootPath, "imagenes");
                 var nombrearchivo = string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
@@ -45,11 +47,14 @@ namespace HomePet.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index","Home");
           }          
+          var TipoMascota = _context.TipoMascotas.OrderByDescending(x=>x.Id).ToList();          
+          ViewBag.Tipo = TipoMascota;
           return View();        
           
         }
         public IActionResult RegistrarTipoMascota()
         {          
+          
           return View();
         }
         [HttpPost]
@@ -60,6 +65,7 @@ namespace HomePet.Controllers
               _context.SaveChanges();
               return RedirectToAction("Index","Home");
           }     
+          
           return View();
         }
         

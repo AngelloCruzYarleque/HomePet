@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     var mascota = (List<Mascota>)ViewBag.m;
-    
+    var tipo = (List<TipoMascota>)ViewBag.tipo;
 }
 @model List<Mascota>
 
@@ -37,6 +37,16 @@
                                         <option value="+7 años">+7 años</option>  
                                 </select>
                         </div>
+                        <div class="form-group">
+                                <label>Tipo de Mascota:</label>
+                                <select name="tipo" id="" class="form-control" style="width: 200px;">
+                                        <option value="0">--Seleccionar--</option>
+                                        @foreach (var t in tipo)
+                                        {
+                                        <option value="@t.Id">@t.Descripcion</option>
+                                        }
+                                </select>
+                        </div> 
                         <div class="col-sm-3">
                                 <div style="text-align: center; padding: 15px">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">Filtrar</button>

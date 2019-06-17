@@ -8,5 +8,6 @@ namespace HomePet.Models
          public int Id { get; set; }
         [Required]
         public string Descripcion { get; set; }
+        public float Precio { get; set; }
     }
 }

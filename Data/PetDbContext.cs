@@ -8,7 +8,8 @@ namespace HomePet.Data
     {
         public DbSet<Contacto> Contactos { get; set; } 
         public DbSet<Mascota> Mascotas { get; set; }
-        public DbSet<TipoMascota> TipoMascotas { get; set; }        
+        public DbSet<TipoMascota> TipoMascotas { get; set; }       
+        public DbSet<Adopta> Adoptas { get; set; }  
         public PetDbContext(DbContextOptions<PetDbContext> o) : base(o) {
 
         }

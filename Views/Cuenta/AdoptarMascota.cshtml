@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Adopción de Mascota";
+    var tipo = (List<TipoMascota>)ViewBag.precio;
+}
+@model Adopta
+@if (Context.User.Identity.IsAuthenticated) {
+
+<div class="container">
+    <h1 style="text-align:center">Adopción de Mascota</h1>
+    <form asp-action="adoptarmascota" method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input asp-for="Nombre">
+        </div>     
+        <div class="form-group">
+            <label>Apellidos:</label>
+            <input asp-for="Apellidos">
+        </div> 
+        <div class="form-group">
+            <label>DNI:</label>
+            <input asp-for="DNI">
+        </div> 
+        <div class="form-group">
+            <label>Edad:</label>
+            <input asp-for="Edad">
+        </div>    
+        <div class="form-group">
+            <label>Numero de Cuenta:</label>
+            <input asp-for="NumeroCuenta">
+        </div> 
+        <div class="form-group">
+            <label>Direccion:</label>
+            <input asp-for="Direccion">
+        </div> 
+        <div class="form-group">
+            <label>Telefono:</label>
+            <input asp-for="Telefono">
+        </div> 
+        <div class="form-group">
+            <label>Ocupacion:</label>
+            <input asp-for="Ocupacion">
+        </div> 
+        <div class="form-group">
+            <label>Precio:</label>
+            @tipo.Precio
+        </div> 
+        <div class="form-group">
+            <label>Estado Civil:</label>
+            <select class="custom-select" asp-for="EstadoCivil">
+                <option value="0">--Seleccionar--</option>
+                <option value="Soltero">Soltero(a)</option>
+                <option value="Casado">Casado(a)</option>
+                <option value="Viudo">Viudo(a)</option>
+                <option value="Divorciado">Divorciado(a)</option>
+            </select>
+        </div>
+           
+        
+        <div class="form-group">
+            <button style="background-color: green" class="btn btn-primary btn-lg btn-block" type="submit">Adoptar Mascota</button>
+        </div>
+    </form>
+</div>
+}else{
+        <h1>NO ESTA AUTORIZADO PARA VISUALIZAR ESTA PAGINA</h1>
+        <div class="container">
+                <img src="~/imagenes/error.png" alt="" >
+        </div>
+
+        
+}

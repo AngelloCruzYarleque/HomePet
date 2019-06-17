@@ -1,5 +1,6 @@
 @{
     ViewData["Title"] = "Registro de Mascotas";
+    var Tipo =(List<TipoMascota>)ViewBag.Tipo;
 }
 @model Mascota
 @if (Context.User.Identity.IsAuthenticated) {
@@ -58,8 +59,10 @@
             <label>Tipo de Mascota:</label>
             <select class="custom-select" asp-for="IdTipoMascota">
                 <option value="0">--Seleccionar--</option>
-                <option value="1">Perro</option>
-                <option value="2">Gato</option>
+                @foreach (var t in Tipo)
+                {
+                    <option value="@t.Id">@t.Descripcion</option>
+                }
             </select>
         </div>     
         <div class="form-group">
