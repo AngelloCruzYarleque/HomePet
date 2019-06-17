@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     var mascota = (List<Mascota>)ViewBag.m;
-    var tipo = (List<TipoMascota>)ViewBag.tipo;
+    var tipo = (List<TipoMascota>)ViewBag.tipo; 
 }
 @model List<Mascota>
 
@@ -55,10 +55,12 @@
                 </div>    
         </form>
 </div>
-
-        <span>
+<div class="text-center">
+        <p>
                 @TempData["Validacion"]
-        </span>
+        </p>  
+</div>
+        
 
 <div class="container">
         <div class="row">

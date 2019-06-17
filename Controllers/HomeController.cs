@@ -34,7 +34,7 @@ namespace HomePet.Controllers
                 }                
             ViewBag.m = mascotas;
             ViewBag.tipo =TipoMascotas;
-            TempData["Validacion"]=HttpContext.Session.GetString("valida");
+            TempData["Validacion"] = HttpContext.Session.GetString("valida");
             return View();
         }
         public IActionResult Contacto()
