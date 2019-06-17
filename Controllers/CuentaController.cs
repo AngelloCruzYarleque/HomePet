@@ -136,8 +136,10 @@ namespace HomePet.Controllers
         public IActionResult MisMascotas()
         {
           var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
-          var mascotas = _context.Mascotas.Where(x=> x.UserName==user.UserName).ToList();           
-            ViewBag.m = mascotas;
+          var mascotasAdop = _context.Mascotas.Where(x=> x.UserName==User.Identity.Name).ToList();           
+          var mascotasRegi = _context.Mascotas.Where(x=> x.exDueno==User.Identity.Name).ToList(); 
+          ViewBag.m = mascotasAdop;
+          ViewBag.mr = mascotasRegi;
           ViewBag.usuario = user.UserName;
           return View();
         }

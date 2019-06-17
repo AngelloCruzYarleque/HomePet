@@ -43,7 +43,8 @@ namespace HomePet.Controllers
                 var fullPath = Path.Combine(uploads,photoName);
                 m.photofile.CopyTo(new FileStream(fullPath, FileMode.Create));  
                 m.Foto = photoName;   
-                m.exDueno=user.UserName;                 
+                m.exDueno=user.UserName;
+                                
                 _context.Add(m);
                 _context.SaveChanges();
                 
